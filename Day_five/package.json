@@ -1,0 +1,19 @@
+{
+  "name": "day_five",
+  "version": "1.0.0",
+  "main": "logEvents.js",
+  "scripts": {
+    "start": "nodemon index",
+    "dev": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
