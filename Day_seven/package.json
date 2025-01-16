@@ -1,0 +1,19 @@
+{
+  "name": "Day_seven",
+  "version": "1.0.0",
+  "description": "Day_seven",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "liban",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.23.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
