@@ -6,5 +6,6 @@ const PORT = process.env.PORT || 3500;
 app.listen(PORT, ()=> console.log(`app is running on port ${PORT}`));
 
 app.get('/', (req, res)=>{
-    res.send('hello world')
+    // res.send('hello world')
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
 })
