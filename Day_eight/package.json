@@ -1,16 +1,17 @@
 {
   "name": "day_eight",
   "version": "1.0.0",
-  "description": "Day_seven",
-  "main": "index.js",
+  "description": "day_eight",
+  "main": "server.js",
   "scripts": {
-    "start": "node",
-    "dev": "nodemon index"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "author": "liban",
   "license": "ISC",
   "dependencies": {
     "date-fns": "^2.23.0",
+    "express": "^5.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
