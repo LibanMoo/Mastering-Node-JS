@@ -11,5 +11,9 @@ app.get(/^\/new-page(.html$)?/, (req, res)=>{
     // res.send('hello world')
     res.sendFile(path.join(__dirname, 'views', 'new-page.html'));
 })
+app.get(/^\/old-page(.html$)?/, (req, res)=>{
+    // res.send('hello world')
+    res.redirect(301, '/new-page.html');
+})
 
 app.listen(PORT, ()=> console.log(`app is running on port ${PORT}`));
