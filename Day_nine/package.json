@@ -1,7 +1,7 @@
 {
   "name": "day_eight",
   "version": "1.0.0",
-  "description": "day_eight",
+  "description": "day_nine",
   "main": "server.js",
   "scripts": {
     "start": "node server",
