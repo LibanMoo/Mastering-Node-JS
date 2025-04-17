@@ -3,11 +3,17 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 3500;
 
+
+app.use((req, res, next)=>{
+    console.log(`${req.method} \t ${res.path}`);
+    next();
+})
+
 app.use(express.urlencoded({extended: false}));
 
-app.use(express.json());
+// app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/static', express.static(path.join(__dirname, 'puplic')));
 
