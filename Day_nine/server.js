@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const logEvents = require('./middleware/logEvent');
 const path = require('path');
 const PORT = process.env.PORT || 3500;
 
