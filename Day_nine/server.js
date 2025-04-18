@@ -9,7 +9,19 @@ const PORT = process.env.PORT || 3500;
 
 app.use(logger)
 
-app.use(cors);
+const whiteList = ['http://localhost:3500', 'https://www.google.com'];
+const options = {
+    origin: (origin, callback) => {
+        if(whiteList.indexOf(origin)!== -1){
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Cors is not allowed for this site'));
+        }
+    },
+    optionsSuccessStatus: 200
+}
+app.use(cors(options));
 
 app.use(express.urlencoded({extended: false}));
 
