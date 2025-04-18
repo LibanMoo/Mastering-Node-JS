@@ -12,7 +12,7 @@ app.use(logger)
 const whiteList = ['http://localhost:3500', 'https://www.google.com'];
 const options = {
     origin: (origin, callback) => {
-        if(whiteList.indexOf(origin)!== -1){
+        if(whiteList.indexOf(origin)!== -1 || !origin){
             callback(null, true);
         }
         else {
@@ -33,6 +33,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get(/^\/index($.html)?/, (req, res)=>{
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
+})
+
+app.get(/^.*$/, (req, res)=>{
+    res.sendFile(path.join(__dirname, 'views', '404.html'));
 })
 
 app.listen(PORT, ()=> console.log(`app is running on port ${PORT}`));
