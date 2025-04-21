@@ -1,4 +1,4 @@
-const logEvent = require('./logEvent');
+const {logEvent} = require('./logEvent');
 
 const errorHandler = (req, err, res, next)=>{
     logEvent(`${err.name} : ${err.message}`, 'errorLog.txt')

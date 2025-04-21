@@ -13,7 +13,7 @@ app.use(logger)
 const whiteList = ['http://localhost:3500', 'https://www.google.com'];
 const options = {
     origin: (origin, callback) => {
-        if(whiteList.indexOf(origin)!== -1 || !origin){
+        if(whiteList.indexOf(origin)!== -1){
             callback(null, true);
         }
         else {
