@@ -5,7 +5,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3500;
 
 
-app.use('/static', express.static(path.join(__dirname, 'puplic')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('subdir', require('./routes/subdir'));
 
