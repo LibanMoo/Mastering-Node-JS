@@ -3,8 +3,10 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 3500;
 
+app.use(express.urlencoded({extended: false}))
 
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.json())
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('subdir', require('./routes/subdir'));
 
