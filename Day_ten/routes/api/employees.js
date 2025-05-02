@@ -3,10 +3,10 @@ const { post } = require('../root');
 const router = express.Router();
 const data = {};
 
-data.employees(require('../../data/employees.json'));
+data.employees = require('../../data/employees.json');
 
 router.route('/')
-      .get('/', (req, res)=>{
+      .get((req, res)=>{
         res.json(data.employees);
       })
       .post((req, res)=>{
