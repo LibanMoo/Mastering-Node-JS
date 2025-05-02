@@ -19,3 +19,10 @@ const updateEmployee = (req, res) => {
 const deleteEmployee = (req, res) => {
     res.json({"id": req.params.id})
 }
+
+module.exports = {
+    getAllEmployee,
+    getEmployee,
+    updateEmployee,
+    deleteEmployee
+};
