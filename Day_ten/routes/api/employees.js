@@ -16,7 +16,10 @@ router.route('/')
         })
       })
       .put((req, res)=>{
-        res.json
+        res.json({
+          "firstName": req.body.firstName,
+          "lastName": req.body.lastName
+      })
       })
       .delete((req, res)=>{
         res.json({"id": req.body.id})
