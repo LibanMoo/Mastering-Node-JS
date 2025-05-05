@@ -28,7 +28,7 @@ const deleteEmployee = (req, res) => {
 
 module.exports = {
     getAllEmployee,
-    getEmployee,
+    getEmployees,
     updateEmployee,
     deleteEmployee,
     createEmployee
