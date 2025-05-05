@@ -15,6 +15,8 @@ app.use('/', require('./routes/root'))
 
 app.use('subdir', require('./routes/subdir'));
 
+app.use(logger);
+
 app.get(/^.*$/, (req, res)=>{
     res.sendFile(path.join(__dirname, 'views', '404.html'));
 })
