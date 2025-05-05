@@ -4,15 +4,15 @@ const employeesController = require('../../controllers/employeesController');
 const router = express.Router();
 const data = {};
 
-data.employees = require('../../data/employees.json');
+data.employees = require('../../model/employees.json');
 
 router.route('/')
       .get(employeesController.getAllEmployee)
       .post(employeesController.createEmployee)
       .put(employeesController.updateEmployee)
-      .delete(employeesController.deleteEmployee)
+      .delete(employeesController.deleteEmployee);
 
       router.route('/:id')
 
-          .get(employeesController.getEmployee)
+          .get(employeesController.getEmployees)
 module.exports = router;
