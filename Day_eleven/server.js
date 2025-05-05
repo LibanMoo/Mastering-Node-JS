@@ -17,8 +17,6 @@ app.use('/employees', require('./routes/api/employees'))
 
 app.use('/', require('./routes/root'))
 
-app.use('subdir', require('./routes/subdir'));
-
 app.use(logger);
 
 app.use(errorHandler)
