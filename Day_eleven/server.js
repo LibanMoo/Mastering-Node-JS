@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const {logger} = require('./middleware/logEvent')
+const errorHandler = require('./middleware/errorHandler')
 const PORT = process.env.PORT || 3500;
 
 app.use(express.urlencoded({extended: false}))
@@ -16,6 +17,8 @@ app.use('/', require('./routes/root'))
 app.use('subdir', require('./routes/subdir'));
 
 app.use(logger);
+
+app.use(errorHandler)
 
 app.get(/^.*$/, (req, res)=>{
     res.sendFile(path.join(__dirname, 'views', '404.html'));
