@@ -1,5 +1,8 @@
-const data = {};
-data.employees = require('../model/employees.json')
+const data = {
+    employees : require('../model/employees.json'),
+    setEmployees: (data)=> this.employees = data
+};
+
 
 const getAllEmployee = (req, res) =>{
     res.json(data.employees)
@@ -12,7 +15,7 @@ const createEmployee = (req, res) => {
     lastName: req.body.lastName
    }
    if(!newEmployee.firstName || !newEmployee.lastName){
-    res.status(400).json({"message": "No data found"});
+    res.status(400).json({"message": "Set First name and Last name"});
    }
    data.setEmployee([...data.employees, newEmployee]);
    res.json(data.employees);
