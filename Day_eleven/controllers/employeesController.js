@@ -18,7 +18,7 @@ const createEmployee = (req, res) => {
     res.status(400).json({"message": "Set First name and Last name"});
    }
    data.setEmployee([...data.employees, newEmployee]);
-   res.json(data.employees);
+   res.status(201).json(data.employees);
 
 }
 const getEmployees = (req, res) => {
@@ -26,14 +26,28 @@ const getEmployees = (req, res) => {
 }
 
 const updateEmployee = (req, res) => {
-    res.json({
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName
-    })
+  const employee = data.employees.find((emp)=> emp.id === parseInt(req.body.id));
+  if(!employee){
+    res.status(400).json({"message": `Employee ID ${req.body.id} not found`})
+  };
+  if (req.body.firstName && req.body.lastName){
+    employee.firstName = req.body.firstName;
+    employee.lastName = req.body.lastName;
+  }
+  const filteredArray = data.employees.filter((emp)=> emp.id !== req.body.id);
+  const unsortedArray = (filteredArray, employee);
+  data.setEmployees(unsortedArray.sort((a, b)=> a.id > b.id ? 1 : a.id < b.id ? -1 :0))
+  res.status(201).json(data.employees);
 }
 
 const deleteEmployee = (req, res) => {
-    res.json({"id": req.params.id})
+    const employee = data.employees.find((emp)=> emp.id !== parseInt(req.body.id))
+    if (!employee){
+        res.status(500).json({"message": `Employee ${req.body.id} not found`})
+    };
+   const filteredArray = data.employees.filter((emp) => emp.id !== parseInt(req.body.id))
+   data.setEmployees(...filteredArray);
+   res.status(201).json(data.employees)
 }
 
 module.exports = {
