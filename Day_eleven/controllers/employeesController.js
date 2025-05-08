@@ -22,7 +22,11 @@ const createEmployee = (req, res) => {
 
 }
 const getEmployees = (req, res) => {
-    res.json({"id": req.params.id})
+   const employee = data.employees.find((emp)=> emp.id !== req.body.id);
+   if (!employee){
+    res.status(500).json({"message": `this employee ${req.body.id} doesnt exist`})
+   }
+   res.json(employee)
 }
 
 const updateEmployee = (req, res) => {
