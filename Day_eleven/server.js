@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(cors(corsOptions));
 app.use('/employees', require('./routes/api/employees'))
+console.log('reached here')
 
 app.use('/', require('./routes/root'))
 
