@@ -44,7 +44,7 @@ const updateEmployee = (req, res) => {
 }
 
 const deleteEmployee = (req, res) => {
-    const employee = data.employees.find((emp)=> emp.id !== parseInt(req.body.id))
+    const employee = data.employees.find((emp)=> emp.id === parseInt(req.body.id))
     if (!employee){
         res.status(500).json({"message": `Employee ${req.body.id} not found`})
     };
