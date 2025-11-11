@@ -1,44 +1,48 @@
 const data = {
-    user: require('../model/users.json'),
-    setUser: function (data){
-        this.data = this.user;
-    }
+  user: require("../model/users.json"),
+  setUser: function (newUser) {
+    this.user.push(newUser);
+  },
 };
 
-const fsPromises = require('fs').promises;
-const path = require('path');
-const bcrypt = require('bcrypt');
+const fsPromises = require("fs").promises;
+const path = require("path");
+const bcrypt = require("bcrypt");
 
-const handleNewUser = async (req, res)=>{
-    const {user, pwd} = req.body;
+const handleNewUser = async (req, res) => {
+  const { user, pwd } = req.body;
 
-    if (!user || !pwd){
-     res.status(400).json({"message": "Username and Password needed"})
-    }
-    const dublicate = data.user.find(person => person.username = user);
+  if (!user || !pwd) {
+    return res.status(400).json({ message: "Username and Password needed" });
+  }
 
-    if (dublicate){
-        res.status(409).json({"message": "this user exits"})
-    }
-    try{
-      const hashed_pw = await bcrypt.hash(pwd, 10);
+  const duplicate = data.user.find((person) => person.username === user);
 
-      const newUser = {username: user, password: hashed_pw};
+  if (duplicate) {
+    return res.status(409).json({ message: "This user exists" });
+  }
 
-      data.setUser(...data.user, newUser);
+  try {
+    const hashed_pw = await bcrypt.hash(pwd, 10);
 
-      await fsPromises.writeFile(
-            path.join(__dirname, '..', 'model', 'users.json'),
-            JSON.stringify(data.user)
-      )
-      console.log(`new user: ${user} and password: ${hashed_pw}`)
-      res.status(201).json({"success": "User info recorded succesfully"})
-}
-    
-    catch(err){
-         console.error(err);
-    }
-}
+    const newUser = { username: user, password: hashed_pw };
 
-module.exports = {handleNewUser};
+    data.setUser(newUser);
 
+    await fsPromises.writeFile(
+      path.join(__dirname, "..", "model", "users.json"),
+      JSON.stringify(data.user, null, 2) // formatted JSON
+    );
+
+    console.log(
+      `new user: ${user}, original password: ${pwd}, hashed password: ${hashed_pw}`
+    );
+
+    res.status(201).json({ success: "User info recorded successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports = { handleNewUser };
