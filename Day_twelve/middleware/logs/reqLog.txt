@@ -21,3 +21,5 @@
 20250926	22:22:02	46bb3923-a270-4d2b-8bbf-40c24b2e31f4	GET	 undefined	 /register
 20250926	22:22:03	c5009757-7eae-483e-addf-641d2d6e8255	GET	 undefined	 /.well-known/appspecific/com.chrome.devtools.json
 20250926	22:22:03	070c0a7e-2e1e-4055-8038-741c50060507	GET	 undefined	 /favicon.ico
+20251002	22:44:00	a657e1ae-51f9-49e3-b333-d9e035dac403	GET	 undefined	 /auth
+20251003	21:00:00	f2404dd4-6c38-4937-9646-70881376c018	POST	 undefined	 /registerr
