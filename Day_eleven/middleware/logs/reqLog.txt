@@ -5,3 +5,5 @@
 20250505	23:56:00	a6587d16-dbce-44fa-a1da-9c6d556f434c	GET	 undefined	 /favicon.ico
 20250507	21:34:02	a54ef02c-0b59-428c-b0af-6eabb913885a	GET	 undefined	 /favicon.ico
 20250507	21:34:10	0b5f6749-4b2c-4a3e-83ad-66e6d4ef8dab	GET	 undefined	 /favicon.ico
+20251115	17:52:53	5f974dad-5467-4de0-a490-00d29d53cf40	POST	 undefined	 /auth
+20251115	17:53:11	f133220b-0b3c-47bd-985a-1ee9597d7f24	GET	 undefined	 /auth
