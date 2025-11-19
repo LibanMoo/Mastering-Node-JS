@@ -23,3 +23,5 @@
 20250926	22:22:03	070c0a7e-2e1e-4055-8038-741c50060507	GET	 undefined	 /favicon.ico
 20251002	22:44:00	a657e1ae-51f9-49e3-b333-d9e035dac403	GET	 undefined	 /auth
 20251003	21:00:00	f2404dd4-6c38-4937-9646-70881376c018	POST	 undefined	 /registerr
+20251118	22:40:38	65cea670-170e-48dd-a8d6-0c7fbb98f9e8	GET	 undefined	 /employees
+20251118	22:41:56	49338236-82e8-4756-8f84-23b5307760ea	GET	 undefined	 /employees
