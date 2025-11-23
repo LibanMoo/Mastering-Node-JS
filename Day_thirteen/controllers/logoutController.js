@@ -11,7 +11,7 @@ const path = require('path');
 const handleLogout = async (req, res) => {
     const cookies = req.cookies;
     
-    if (!cookies?.jwt) return res.sendStatus(401);
+    if (!cookies?.jwt) return res.sendStatus(204);
     const refreshToken = cookies.jwt;
 
     const foundUser = usersData.users.filter(person => person.refreshToken === refreshToken);
