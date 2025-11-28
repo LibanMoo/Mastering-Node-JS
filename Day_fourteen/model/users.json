@@ -1,0 +1,9 @@
+[{"username":"liban","password":"$2b$10$YMUlIDIfL.Yherzn9BVZh.HQX63zwpCKhM4REj6j0y.0wdpHBJEkK",
+    "roles":{
+        "admin": 225
+}
+},
+{"username":"ahmed","password":"$2b$10$XqETa5P8/fTNvSw7olFesektl4WDz31RVkXMFhjTBAONqNirtc4Aa", "roles": {
+    "editor": 115
+}}
+]
