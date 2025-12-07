@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-require("dotenv");
 
 const verifyJWT = (req, res, next) => {
   console.log("reached the verifyJWT function");
