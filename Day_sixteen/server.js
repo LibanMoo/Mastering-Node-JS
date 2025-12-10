@@ -45,6 +45,6 @@ app.get(/^.*$/, (req, res) => {
 });
 
 mongoose.connection.once('open', ()=>{
-  console.log('Connected to the Database');
+   console.log("Connected to DB:", mongoose.connection.name);
   app.listen(PORT, () => console.log(`app is running on port ${PORT}`));
 })
