@@ -1,14 +1,8 @@
-const usersData = {
-  users: require("../model/users.json"),
-  setUser: function (data) {
-    this.users = data;
-  },
-};
-const path = require('path');
+const mongoose = require('mongoose');
+const User = require('../model/User');
 const bcrypt = require("bcrypt");
 
 const jwt = require("jsonwebtoken");
-const fsPromises = require("fs").promises;
 
 const handleLogin = async (req, res) => {
   const { user, pwd } = req.body;
@@ -17,7 +11,8 @@ const handleLogin = async (req, res) => {
     return res
       .status(400)
       .json({ message: "username and password are required" });
-  const foundUser = usersData.users.find((person) => person.username === user);
+      
+  const foundUser = await User.findOne({username: user}).exec();
 
   if (!foundUser) return res.sendStatus(401);
 
@@ -37,16 +32,17 @@ const handleLogin = async (req, res) => {
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
-    const otherUsers = usersData.users.filter(
-      (person) => person !== foundUser.username
-    );
-    const currentUser = { ...foundUser, refreshToken };
 
-    usersData.setUser([...otherUsers, currentUser]);
-    await fsPromises.writeFile(
-      path.join(__dirname, "..", "model", "users.json"),
-      JSON.stringify(usersData.users)
-    );
+  try {
+    const result = await User.findOneAndUpdate(
+      {username: user},
+      {refreshToken: refreshToken},
+      {new: true, upsert: true}
+    )    
+  } catch (error) {
+    console.error(error)
+    res.sendStatus(401);    
+  }
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: 'None',
