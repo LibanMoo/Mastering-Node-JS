@@ -1,18 +1,14 @@
-const usersData = {
-  users: require("../model/users.json"),
-  setUser: function (data) {
-    this.users = data;
-  },
-};
+const mongoose = require('mongoose');
+const User = require('../model/User');
 
 const jwt = require("jsonwebtoken");
 
-const handleRefreshToken =  (req, res) => {
+const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
 
   if(!cookies?.jwt) return res.sendStatus(401); // unauthorized
   const refreshToken = cookies.jwt;
-  const foundUser = usersData.users.find(person => person.refreshToken === refreshToken);
+  const foundUser = await User.findOne({refreshToken: refreshToken}).exec();
 
   if (!foundUser) return res.sendStatus(403); //forbidden
 
@@ -21,11 +17,16 @@ const handleRefreshToken =  (req, res) => {
     process.env.REFRESH_TOKEN_SECRET,
     (err, decoded) => {
         if (err) return res.sendStatus(403); //forbidden
-        const accessToken = jwt.sign(
-            {"username": decoded.username},
-            process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: "30s"}
-        )
+           const accessToken = jwt.sign(
+             {
+               userInfo: {
+                 "username": foundUser.username,
+                 "roles": foundUser.role,
+               },
+             },
+             process.env.ACCESS_TOKEN_SECRET,
+             { expiresIn: "60s" }
+           );
         res.json({accessToken});
     }
   )
