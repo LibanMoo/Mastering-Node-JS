@@ -1,12 +1,5 @@
-const usersData = {
-  users: require("../model/users.json"),
-  setUser: function (data) {
-    this.users = data;
-  },
-};
-
-const fsPromises = require("fs").promises;
-const path = require("path");
+const mongoose = require('mongoose');
+const User = require('../model/User');
 
 const handleLogout = async (req, res) => {
   const cookies = req.cookies;
@@ -14,20 +7,20 @@ const handleLogout = async (req, res) => {
   if (!cookies?.jwt) return res.sendStatus(204);
   const refreshToken = cookies.jwt;
 
-  const foundUser = usersData.users.filter(
-    (person) => person.refreshToken === refreshToken
-  );
+  const foundUser = await User.findOne({refreshToken: refreshToken}).exec();
+
   if (!foundUser) return res.sendStatus(403);
 
-  const otherUsers = usersData.users.filter(
-    (person) => person.refreshToken !== refreshToken
-  );
-  const currentUser = { ...foundUser, refreshToken: "" };
-  usersData.setUser([...otherUsers, currentUser]);
-  await fsPromises.writeFile(
-    path.join(__dirname, "..", "model", "users.json"),
-    JSON.stringify(usersData.users)
-  );
+ try {
+  const result = await User.findOneAndUpdate(
+    {refreshToken: refreshToken},
+    {refreshToken: " "},
+    {new: true, upsert: true}
+  )
+ } catch (error) {
+  console.error(error);
+  res.sendStatus(401);
+ }
   res.clearCookie("jwt", {
     httpOnly: true,
     sameSite: "None",
