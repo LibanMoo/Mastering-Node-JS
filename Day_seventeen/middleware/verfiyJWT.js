@@ -7,11 +7,15 @@ const verifyJWT = (req, res, next) => {
   console.log(authHeader);
   const token = authHeader.split(" ")[1];
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-    if (err) return res.sendStatus(403);
-    req.user = decoded.userInfo.username;
-    req.roles = decoded.userInfo.roles;
-    next();
-  });
+jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+  if (err) return res.sendStatus(403);
+
+  req.user = decoded.userInfo.username;
+
+  // Convert roles object → array of numeric values
+  req.roles = Object.values(decoded.userInfo.roles).map(Number);
+
+  next();
+});
 };
 module.exports = verifyJWT;
