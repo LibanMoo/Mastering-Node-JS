@@ -21,7 +21,7 @@ const handleLogin = async (req, res) => {
     const accessToken = jwt.sign(
       { "userInfo": {
            "username": foundUser.username,
-           "roles": foundUser.roles
+           "roles": foundUser.role
       },
     },
       process.env.ACCESS_TOKEN_SECRET,
