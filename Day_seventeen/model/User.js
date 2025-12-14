@@ -15,8 +15,8 @@ const userSchema = new schema ({
             type: Number,
             default: 335,
         },
-        admin: String,
-        editor: String
+        admin: Number,
+        editor: Number
     },
     refreshToken: String 
 })
